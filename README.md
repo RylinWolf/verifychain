@@ -18,7 +18,22 @@
 
 ## 安装与引入
 
-Maven 坐标：
+本项目暂未发布到任何远程 Maven 仓库，但已提供可直接使用的 JAR 包 (见 release)：`verifychain-1.0-ALPHA.jar`。
+
+你可以通过以下两种方式引入：
+
+方式 A：安装到本地 Maven 仓库
+
+```bash
+mvn install:install-file \
+  -Dfile=verifychain-1.0-ALPHA.jar \
+  -DgroupId=com.wolfhouse \
+  -DartifactId=verifychain \
+  -Dversion=1.0-ALPHA \
+  -Dpackaging=jar
+```
+
+安装成功后，在你的项目 `pom.xml` 中按常规坐标引入：
 
 ```xml
 <dependency>
@@ -28,7 +43,25 @@ Maven 坐标：
 </dependency>
 ```
 
-本项目使用了 lombok 依赖，用于解决自定义抛出异常的信息掩盖。
+方式 B：直接以本地 JAR 依赖
+
+1) 将 `verifychain-1.0-ALPHA.jar` 放到你的项目目录（例如 `libs/`）
+
+2) 在 `pom.xml` 中添加 system 范围依赖：
+
+```xml
+<dependency>
+  <groupId>com.wolfhouse</groupId>
+  <artifactId>verifychain</artifactId>
+  <version>1.0-ALPHA</version>
+  <scope>system</scope>
+  <systemPath>${project.basedir}/libs/verifychain-1.0-ALPHA.jar</systemPath>
+</dependency>
+```
+
+提示：`system` 依赖方式在 Maven 中并不推荐，优先使用“方式 A”。
+
+另外，项目源码中使用了 Lombok（用于自定义抛出异常的信息掩盖）。Lombok 为可选依赖，使用该库时，你的业务项目可以不引入 Lombok；仅在你需要编译/修改本库源码时才需要本地安装或启用 Lombok 注解处理器。
 
 ## 项目结构
 
