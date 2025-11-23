@@ -58,6 +58,7 @@ mvn install:install-file \
   <systemPath>${project.basedir}/libs/verifychain-1.0-ALPHA.jar</systemPath>
 </dependency>
 ```
+将 jar 放到项目的 `lib/` 目录，并与 `systemPath` 保持一致。
 
 提示：`system` 依赖方式在 Maven 中并不推荐，优先使用“方式 A”。
 
